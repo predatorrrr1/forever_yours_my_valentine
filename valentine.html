@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Forever Valentine 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Parisienne&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e31b6d;
+            --secondary-color: #ff99ac;
+            --accent-color: #fff0f3;
+            --text-color: #fff;
+            --bg-gradient: linear-gradient(135deg, #2e001f 0%, #680026 100%);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* Container Styles */
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 90%;
+            width: 600px;
+            margin: 2rem auto;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container.active {
+            display: flex;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Parisienne', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            text-shadow: 0 0 15px rgba(227, 27, 109, 0.8);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #ddd;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin: 10px;
+            background: linear-gradient(45deg, #ff3366, #ff6b6b);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            text-decoration: none;
+            display: inline-block;
+            touch-action: manipulation;
+        }
+
+        .btn:hover, .btn:active {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.6);
+        }
+
+        /* Photo Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            border-radius: 2px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .photo-card:hover, .photo-card:active {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 2px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        /* Love Letter */
+        .letter-content {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            overflow-y: auto;
+            max-height: 400px;
+            min-height: 200px;
+            width: 100%;
+        }
+
+        .gujarati-bold {
+            font-weight: bold !important;
+            color: #e31b6d;
+        }
+
+        .cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Letter Button */
+        #letter-next-btn {
+            margin-top: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        #letter-next-btn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Proposal Buttons */
+        .proposal-btns {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px 0;
+            min-height: 100px;
+            position: relative;
+        }
+
+        #yesBtn {
+            position: relative;
+            z-index: 100;
+        }
+
+        #noBtn {
+            background: #4a4a4a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        #noBtn.dodging {
+            position: fixed !important;
+            z-index: 99;
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 24px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            touch-action: manipulation;
+        }
+
+        .music-control:hover, .music-control:active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .music-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Celebration Image */
+        .celebration-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem auto;
+                max-width: 95%;
+                min-height: auto;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .letter-content {
+                font-size: 1.3rem;
+                padding: 15px;
+                max-height: 300px;
+            }
+
+            .gallery-grid {
+                gap: 10px;
+            }
+
+            .photo-card img {
+                height: 100px;
+            }
+
+            .music-control {
+                bottom: 15px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .proposal-btns {
+                gap: 15px;
+                padding: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .letter-content {
+                font-size: 1.2rem;
+                padding: 12px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles"></div>
+
+    <!-- Screen 1: Intro -->
+    <div class="container active" id="screen-intro">
+        <h1>Hey Beautiful... ✨</h1>
+        <p>I have something special to show you.</p>
+        <button class="btn" onclick="nextScreen('screen-gallery')">Start Journey ❤️</button>
+    </div>
+
+    <!-- Screen 2: Gallery -->
+    <div class="container" id="screen-gallery">
+        <h1>Our Memories 📸</h1>
+        <p>Every moment with you is a treasure.</p>
+        <div class="gallery-grid">
+            <div class="photo-card"><img src="img1.jpg" alt="Memory 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23ffb6c1%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22%3E💕%3C/text%3E%3C/svg%3E'"></div>
+            <div class="photo-card"><img src="img2.jpg" alt="Memory 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23ff99ac%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22%3E❤️%3C/text%3E%3C/svg%3E'"></div>
+            <div class="photo-card"><img src="img3.jpg" alt="Memory 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23ffcce0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22%3E💖%3C/text%3E%3C/svg%3E'"></div>
+            <div class="photo-card"><img src="img4.jpg" alt="Memory 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23ffd4e5%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22%3E🌹%3C/text%3E%3C/svg%3E'"></div>
+        </div>
+        <button class="btn" onclick="nextScreen('screen-letter')">Next →</button>
+    </div>
+
+    <!-- Screen 3: Letter -->
+    <div class="container" id="screen-letter">
+        <h1>For You... 💌</h1>
+        <div class="letter-content">
+            <span id="typewriter-text"></span><span class="cursor"></span>
+        </div>
+        <button class="btn" id="letter-next-btn" onclick="nextScreen('screen-proposal')">
+            One Last Thing...
+        </button>
+    </div>
+
+    <!-- Screen 4: Proposal -->
+    <div class="container" id="screen-proposal">
+        <h1>Will You Be My Valentine? 🌹</h1>
+        <p>You are my sunshine, my joy, and my everything.</p>
+        <div class="proposal-btns">
+            <button class="btn" id="yesBtn" onclick="acceptProposal()">YES! 😍</button>
+            <button class="btn" id="noBtn">No 😢</button>
+        </div>
+    </div>
+
+    <!-- Screen 5: Celebration -->
+    <div class="container" id="screen-celebration">
+        <h1>I Knew It! 💖</h1>
+        <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebration" class="celebration-img" onerror="this.style.display='none'">
+        <p style="font-size: 1.5rem;">I love you so much! 🥰</p>
+        <p>Happy Valentine's Day, my forever love! 💕</p>
+    </div>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="dekha-hazaro-dafaa.mp3" type="audio/mp3">
+    </audio>
+    <div class="music-control" onclick="toggleMusic()" title="Toggle Music">🎵</div>
+
+    <script>
+        /* --- CONFIGURATION --- */
+        const YOUR_EMAIL = "yatharthmbhatt90@gmail.com";
+
+        const loveLetterText = "Dearest Love of my life, my eyes were created only to search for your beautiful face in every corner of this world, my ears were blessed just so they could melt at the sound of your sweet voice, ";
+        const gujaratiText = "jevi ritna Radha Ji e emni drashti kholi hati tyare j jyare Bhagwan Shri Krishna Ji no janam thayo hato evi j ritna tamara aagman thi mari prem ni drashti khuli che";
+        const restText = ", and just like that divine moment, your arrival awakened a love in me I never knew existed because of you, I am not the same person anymore… you have transformed me, my heart, and my entire world into something magical and full of love. 💖, I have a very important question...";
+        
+        /* --------------------- */
+
+        // Particle System
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.width = Math.random() * 10 + 5 + 'px';
+                p.style.height = p.style.width;
+                p.style.animationDuration = Math.random() * 10 + 10 + 's';
+                p.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // Screen Navigation
+        function nextScreen(targetId) {
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            if (targetId === 'screen-intro') {
+                playMusic();
+            }
+            if (targetId === 'screen-letter') {
+                setTimeout(startTypewriter, 300);
+            }
+            if (targetId === 'screen-proposal') {
+                setupDodgeButton();
+            }
+        }
+
+        // Music Control
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.querySelector('.music-control');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (!music) return;
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                musicBtn.classList.remove('playing');
+                musicBtn.textContent = '🎵';
+            } else {
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.classList.add('playing');
+                    musicBtn.textContent = '🎶';
+                }).catch(e => {
+                    console.log("Audio playback failed:", e);
+                    alert("Tap the music button to play audio 🎵");
+                });
+            }
+        }
+
+        function playMusic() {
+            if (!music || isPlaying) return;
+            music.play().then(() => {
+                isPlaying = true;
+                musicBtn.classList.add('playing');
+                musicBtn.textContent = '🎶';
+            }).catch(e => {
+                console.log("Auto-play blocked - user interaction required");
+            });
+        }
+
+        // Typewriter Effect
+        let charIndex = 0;
+        let phase = 0;
+        let typewriterActive = false;
+
+        function startTypewriter() {
+            if (typewriterActive) return;
+            typewriterActive = true;
+            
+            const elem = document.getElementById('typewriter-text');
+            if (!elem) return;
+            elem.innerHTML = "";
+            charIndex = 0;
+            phase = 0;
+            type();
+        }
+
+        function type() {
+            let currentText = '';
+            
+            if (phase === 0 && charIndex < loveLetterText.length) {
+                currentText = loveLetterText.charAt(charIndex);
+                document.getElementById('typewriter-text').innerHTML += currentText;
+                charIndex++;
+                setTimeout(type, 40);
+            } 
+            else if (phase === 1 && charIndex < gujaratiText.length) {
+                currentText = gujaratiText.charAt(charIndex);
+                document.getElementById('typewriter-text').innerHTML += `<span class="gujarati-bold">${currentText}</span>`;
+                charIndex++;
+                setTimeout(type, 35);
+            }
+            else if (phase === 2 && charIndex < restText.length) {
+                currentText = restText.charAt(charIndex);
+                document.getElementById('typewriter-text').innerHTML += currentText;
+                charIndex++;
+                setTimeout(type, 40);
+            }
+            else {
+                if (phase === 0) {
+                    phase = 1;
+                    charIndex = 0;
+                    setTimeout(type, 300);
+                } else if (phase === 1) {
+                    phase = 2;
+                    charIndex = 0;
+                    setTimeout(type, 500);
+                } else {
+                    // Show button
+                    const btn = document.getElementById('letter-next-btn');
+                    if (btn) {
+                        btn.classList.add('show');
+                    }
+                    document.querySelector('.cursor').style.display = 'none';
+                }
+            }
+        }
+
+        // Dodge Button
+        let dodgeCount = 0;
+        let dodgeSetup = false;
+
+        function setupDodgeButton() {
+            if (dodgeSetup) return;
+            dodgeSetup = true;
+            
+            const noBtn = document.getElementById('noBtn');
+            if (!noBtn) return;
+
+            // Reset button
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+            noBtn.classList.remove('dodging');
+            dodgeCount = 0;
+
+            // Add event listeners
+            noBtn.addEventListener('mouseenter', dodgeButton);
+            noBtn.addEventListener('touchstart', dodgeButton, { passive: true });
+            noBtn.addEventListener('click', dodgeButton);
+        }
+
+        function dodgeButton(e) {
+            if (e) e.preventDefault();
+            
+            const btn = document.getElementById('noBtn');
+            if (!btn || dodgeCount > 15) return;
+
+            const phrases = [
+                "No 😢", "Are you sure? 🤔", "Really? 😯", "Think again! 💭",
+                "Don't break my heart 💔", "Please? 🥺", "Last chance! ⚠️",
+                "You can't say no! 😤", "I'll give you cookies 🍪", "But I love you! ❤️",
+                "Pretty please? 🙏", "With sugar on top? 🍰", "I'll do anything! 😊",
+                "Come on... 💕", "You know you want to! 😉", "Say yes! 🎉"
+            ];
+
+            // Get viewport dimensions
+            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            
+            // Calculate safe position
+            const btnWidth = btn.offsetWidth;
+            const btnHeight = btn.offsetHeight;
+            const maxX = vw - btnWidth - 20;
+            const maxY = vh - btnHeight - 20;
+            
+            const x = Math.random() * (maxX - 20) + 20;
+            const y = Math.random() * (maxY - 20) + 20;
+
+            btn.classList.add('dodging');
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+            btn.innerText = phrases[dodgeCount % phrases.length];
+            dodgeCount++;
+        }
+
+        // Accept Proposal
+        function acceptProposal() {
+            nextScreen('screen-celebration');
+            setTimeout(triggerConfetti, 300);
+            sendNotification();
+        }
+
+        function sendNotification() {
+            fetch(`https://formsubmit.co/ajax/${YOUR_EMAIL}`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    subject: "SHE SAID YES! 💖",
+                    message: "Congratulations! Your Valentine accepted the proposal on your website! 💍✨",
+                    timestamp: new Date().toLocaleString()
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log("Email notification sent", data))
+            .catch(error => console.log("Email service unavailable", error));
+        }
+
+        // Confetti
+        function triggerConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.cssText = `
+                        position: fixed;
+                        left: ${Math.random() * 100}vw;
+                        top: -10px;
+                        width: ${Math.random() * 10 + 5}px;
+                        height: ${Math.random() * 10 + 5}px;
+                        background: ${colors[Math.floor(Math.random() * colors.length)]};
+                        z-index: 1000;
+                        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(confetti);
+
+                    const animation = confetti.animate([
+                        { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                        { transform: `translateY(${vh + 20}px) rotate(${Math.random() * 720 - 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 2000 + 2000,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    });
+
+                    animation.onfinish = () => confetti.remove();
+                }, i * 30);
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            console.log("Valentine's website loaded successfully! 💖");
+        });
+    </script>
+</body>
+</html>
